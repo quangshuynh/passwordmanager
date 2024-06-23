@@ -1,16 +1,23 @@
-# This is a sample Python script.
+"""
+Password Manager Project
+06/22/24
+author: Quang Huynh, Kai Fan
+"""
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from cryptography.fernet import Fernet
 
+class PasswordManager:
+    def __init__(self):
+        self.key = None
+        self.pw_file = None  # password file
+        self.pw_dict = {}  # password dictionary
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    def make_key(self, path):
+        self.key = Fernet.generate_key()  # generate a key
+        # print(self.key)
+        with open(path, "wb") as file:
+            file.write(self.key)
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# debugging
+pm = PasswordManager()
+pm.make_key("testkey.key")
