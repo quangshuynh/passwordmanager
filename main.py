@@ -32,7 +32,7 @@ class FileEditor:
             os.remove(fileName)
         except PermissionError:
             print("Permission denied")
-    #def create_new_user(): ###Waiting for response KF
+    #def create_new_user(): ###One password One file continue KF
         #with open()
 
 #testing create_text_file
