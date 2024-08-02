@@ -32,11 +32,28 @@ class FileEditor:
             os.remove(fileName)
         except PermissionError:
             print("Permission denied")
-    #def create_new_user(): ###One password One file continue KF
-        #with open()
+    def entry(fileName:str)->None: #processes the user name and password
+        usr = input("Please enter the new user name:\n")
+        with open(fileName + ".txt", "w+") as newUser:
+            newUser.write(usr + "\n")
+            print("\tsuccess in recording user name in specified user file")
+            pw = input("Now please enter the new password:\n")
+            newUser.write(pw)
+            print("\tsuccess in recording password in specified user file")
+    def create_new_user(self)->None: #the main method called to create a new user file
+        confirm = input("Are you sure? Y or N:\n")
+        if confirm == "Y":
+            userName = input("Input new user name here:\n")
+            #need file name input validation check here, make it eventually lol
+            FileEditor.create_text_file(userName)
+            FileEditor.entry(userName)
+        else:
+            print("Bye")
+            exit(0)
 
-#testing create_text_file
-FileEditor.create_text_file("poop")
+
+#testing create_new_user, entry, and create_text_file
+FileEditor.create_new_user(FileEditor)
 
 #testing delete_file
 FileEditor.delete_file("poop.txt")
