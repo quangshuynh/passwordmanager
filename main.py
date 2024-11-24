@@ -6,8 +6,9 @@ author: Quang Huynh, Kai Fan
 
 import os  # used to create and edit files and folders
 from cryptography.fernet import Fernet  # used to encrypt passwords
-import tkinter as tk
-from tkinter import messagebox, simpledialog
+import customtkinter as ctk  # for gui
+from tkinter import messagebox  # for gui
+from tkinter import simpledialog  # for gui
 
 class PasswordManager:
     """
@@ -121,18 +122,35 @@ class PasswordManagerGUI:
         self.pm = PasswordManager()
         self.pm.make_key()
 
-        # Set up the main window
+        # configure root window
         self.root = root
         self.root.title("Password Manager")
+        self.root.geometry("400x300")
+        ctk.set_appearance_mode("dark")  # modes: "System" (default), "Dark", "Light"
+        ctk.set_default_color_theme("blue")  # themes: "blue" (default), "green", "dark-blue"
 
-        # Add buttons
-        self.add_button = tk.Button(root, text="Add Password", command=self.add_password)
+        # header label
+        self.header_label = ctk.CTkLabel(
+            root, text="Password Manager", font=("Roboto", 24, "bold")
+        )
+        self.header_label.pack(pady=20)
+
+        # add Password Button
+        self.add_button = ctk.CTkButton(
+            root, text="Add Password", command=self.add_password, width=200
+        )
         self.add_button.pack(pady=10)
 
-        self.view_button = tk.Button(root, text="View Passwords", command=self.view_passwords)
+        # view Passwords Button
+        self.view_button = ctk.CTkButton(
+            root, text="View Passwords", command=self.view_passwords, width=200
+        )
         self.view_button.pack(pady=10)
 
-        self.quit_button = tk.Button(root, text="Quit", command=root.quit)
+        # quit Button
+        self.quit_button = ctk.CTkButton(
+            root, text="Quit", command=root.quit, fg_color="red", width=200
+        )
         self.quit_button.pack(pady=10)
 
     def add_password(self):
@@ -182,6 +200,6 @@ class PasswordManagerGUI:
 
 # run application
 if __name__ == "__main__":
-    root = tk.Tk()
+    root = ctk.CTk()
     gui = PasswordManagerGUI(root)
     root.mainloop()
