@@ -194,7 +194,7 @@ class PasswordManagerGUI:
             messagebox.showinfo("Passwords", "No passwords stored yet!")
         else:
             pw_list = "\n".join(
-                [f"{website} -> User: {user}, Password: {pw}" for website, (user, pw) in passwords.items()]
+                [f"{website}:\n User: {user}, Password: {pw}\n" for website, (user, pw) in passwords.items()]
             )
             messagebox.showinfo("Passwords", pw_list)
 
